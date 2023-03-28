@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- Define two security roles -->
+    <security-role>
+        <description>movie reviewers</description>
+        <role-name>reviewer</role-name>
+    </security-role>
+    <!-- Restrict access to all files in the /admin folder -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Reviewer Area</web-resource-name>
+            <url-pattern>/reviews/*</url-pattern>
+        </web-resource-collection>
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>reviewer</role-name>
+        </auth-constraint>
+        <!-- Require a secure connection -->
+        <!--        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>-->
+    </security-constraint>
+        <security-role>
+        <description>admins</description>
+        <role-name>admin</role-name>
+    </security-role>
+    <!-- Restrict access to all files in the /admin folder -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admins Area</web-resource-name>
+            <url-pattern>/admins/*</url-pattern>
+        </web-resource-collection>
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <!-- Require a secure connection -->
+        <!--        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>-->
+    </security-constraint>
+    <!-- Use form-based authentication -->
+    <!--    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/admin/login.html</form-login-page>
+            <form-error-page>/admin/login_error.html</form-error-page>
+        </form-login-config>
+    </login-config>-->
+    <!-- Use basic authentication -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Reviewer Area</realm-name>
+    </login-config>
+    <servlet>
+        <servlet-name>Public</servlet-name>
+        <servlet-class>controllers.Public</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reviewers</servlet-name>
+        <servlet-class>controllers.Reviewers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admins</servlet-name>
+        <servlet-class>controllers.admins</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Public</servlet-name>
+        <url-pattern>/Public</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reviewers</servlet-name>
+        <url-pattern>/reviews/revController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admins</servlet-name>
+        <url-pattern>/admin/adminController</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>Public</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+</web-app>
