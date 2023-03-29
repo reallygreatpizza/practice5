@@ -11,6 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>JSP Page</title>
     </head>
+        <a href="Public">View All Movies</a>
+        <a href="reviews/revController">REVIEWERS</a>
+        <a href="admin/adminController">ADMINS</a>
     <body>
         <h1>Register</h1>
 

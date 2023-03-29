@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
 
-<a href="revController">REVIEWERS ONLY</a>
+    <a href="Public">View All Movies</a>
+    <a href="reviews/revController">REVIEWERS</a>
+    <a href="admin/adminController">ADMINS</a>
 
 <table>
     
